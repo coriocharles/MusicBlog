@@ -3,7 +3,7 @@ const mongoose = require('../db/connection')
 const genreSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
-        attributes: { type: String },
+        attributes: [String],
         keyContributors: [String]
 
 
