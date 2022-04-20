@@ -1,11 +1,5 @@
 const mongoose = require('../db/connection')
-const Artist = require('./artist-schema')
-const Genre = require('./genre-schema')
-ArtistSchema = mongoose.model('Artist').schema,
-    Schema = mongoose.Schema;
 
-GenreSchema = mongoose.model('Genre').schema,
-    Schema = mongoose.Schema;
 
 const postSchema = new mongoose.Schema(
     {
@@ -13,8 +7,8 @@ const postSchema = new mongoose.Schema(
         Rating: { type: String },
         Author: {type: String},
         Review: {type: String},
-        artist: ArtistSchema,
-        Genre: GenreSchema
+        artist: { type: String },
+        Genre: [String]
 
     },
     { timestamps: true }

@@ -1,0 +1,25 @@
+<h2>Edit Post:</h2>
+
+<form action="/posts/<%=post._id%>/?_method=put" method="POST">
+    
+    <div class="form-group">
+        <label for="Song">Song Name:</label>
+        <input type="text" id="Song" name="Song" class="form-control" value="<%=post.Song%>">
+    </div>
+    <div class="form-group">
+        <label for="Rating">Rating:</label>
+        <input type="text" id="Rating" name="Rating" class="form-control" value="<%=post.Rating%>">
+    </div>
+    <div class="form-group">
+        <label for="Author">Author:</label>
+        <input type="text" id="Author" name="Author" class="form-control" value="<%=post.Author%>">
+    </div>
+    <div class="form-group">
+        <label for="Review">Review:</label>
+        <input type="text" id="Review" name="Review" class="form-control" value="<%=post.Review%>">
+    </div>
+
+
+    <input type="submit" value="Update Post" class="btn btn-primary" />
+    <a href="/posts" class="btn btn-secondary">Cancel</a>
+</form>
