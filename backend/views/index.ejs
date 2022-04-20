@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -21,22 +22,30 @@
 <body>
     <div class="nav-wrapper white">
         <a href="#" class="brand-logo red-text">Music Org</a>
-        <a href="/posts/create" class="btn right green">New Post</a>
+        <a href="/posts/create" class="btn btn-success right">New Post</a>
     </div>
+    
     <h2>Posts</h2>
+    <div style="text-align: center">
     <% for (let i=0; i < posts.length; i ++) { %>
-        <li>
+        <li class="card" style="width: 18rem;">
+            <div class="card-body"
+            <p class="card-text">
             <%= posts[i].Song %>
             <%= posts[i].Author %>
-            <%= posts[i].Review %>
-            Link to Post: <a href="/posts/<%=posts[i]._id%>">
-                            <%=posts[i].Author%>
+            <%= posts[i].Notes %>
+            </p>
+           <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">
+                            View
                         </a>
-            <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-primary">Edit</a>
+            
+            <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-secondary">Edit</a>
             <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST" class="d-inline">
                 <input type="submit" value="Delete" class="btn btn-danger"/>
             </form>
+        </div>
         </li>
         <% } %>
+    </div>
 </body>
 </html>

@@ -6,10 +6,11 @@ const postSchema = new mongoose.Schema(
         Song: { type: String, required: true },
         Rating: { type: String },
         Author: {type: String},
-        Review: {type: String},
-        artist: { type: String },
-        Genre: [String]
-
+        Notes: {type: String},
+        Artist: { type: String },
+        Genre: [String],
+        Platform: [String],
+        Link: [String]
     },
     { timestamps: true }
 )

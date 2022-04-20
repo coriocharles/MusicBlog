@@ -3,24 +3,24 @@
         "Song": "hello",
         "Rating": "Good",
         "Author": "Charlie",
-        "Review": "I really like this song.  I can't wait to hear more"
+        "Notes": "I really like this song.  I can't wait to hear more"
     },
     {
         "Song": "goodbye",
         "Rating": "Bad",
         "Author": "Charlie",
-        "Review": "Not a fan, the drums are too loud!"
+        "Notes": "Not a fan, the drums are too loud!"
     },
     {
         "Song": "test",
         "Rating": "Ok",
         "Author": "Bob",
-        "Review": "What an ok track"
+        "Notes": "What an ok track"
     },
     {
         "Song": "orange",
         "Rating": "Mid",
         "Author": "Alice",
-        "Review": "I like the color orange"
+        "Notes": "I like the color orange"
     }
 ]
