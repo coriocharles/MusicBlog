@@ -29,6 +29,14 @@ router.get('/:id/edit', (req,res)=> {
 
 })
 
+router.get('/search/:value', (req, res) => {
+    Post.find({ "Song": { "$regex": req.params.value, "$options": "i" } })
+        .then(posts => {
+            res.render('search', {posts})
+        })
+
+})
+
 router.post('/', (req, res) => {
     // res.send('received!')
     console.log('in post')
