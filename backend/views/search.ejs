@@ -22,10 +22,24 @@
     <nav class="nav">
         <a class="nav-link active" href="/posts">Back to Home Page</a>
     </nav>
-    
+    <div style="text-align: center">
     <% for (let i=0; i < posts.length; i ++) { %>
         <li class="card" style="width: 18rem;">
-            <div class="card-body" <p class="card-text">
+            <img class="card-img-top" src="
+                        <% if (posts[i].Link.includes(" bandcamp")) { %>
+            https://i.imgur.com/lLQoinI.png
+            <% } else if (posts[i].Link.includes("youtube")) { %>
+                https://i.imgur.com/qTtMmDO.png
+                <% } else if (posts[i].Link.includes("spotify")) { %>
+                    https://i.imgur.com/YB0YsUm.png
+                    <% } else if (posts[i].Link.includes("soundcloud")) { %>
+                        https://i.imgur.com/UStS5cp.jpg
+                        <% } else { %>
+                            https://i.imgur.com/7VTlCxz.png
+                            <% } %>
+                                " alt="not working" style="max-width: 5rem; max-height: 2.5rem">
+            <div class="card-body">
+                <p class="card-text">
                 <%= posts[i].Song[0].toUpperCase() + posts[i].Song.substring(1) %> by <%= posts[i].Artist %><br>
                         Album: <%= posts[i].Album %><br><br>
                             <%= posts[i].Notes %>
@@ -42,6 +56,7 @@
             </div>
         </li>
         <% } %>
+    </div>
 </body>
 </html>
 

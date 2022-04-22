@@ -1,26 +1,25 @@
 <h2>Edit Post:</h2>
 
 <form action="/posts/<%=post._id%>/?_method=put" method="POST">
-    
     <div class="form-group">
         <label for="Song">Song Name:</label>
-        <input type="text" id="Song" name="Song" class="form-control" value="<%=post.Song%>">
+        <input type="text" id="Song" name="Song" class="form-control" value="<%=post.Song%>"autocomplete="off">
     </div>
     <div class="form-group">
         <label for="Rating">Rating:</label>
-        <input type="text" id="Rating" name="Rating" class="form-control" value="<%=post.Rating%>">
+        <input type="text" id="Rating" name="Rating" class="form-control" value="<%=post.Rating%>"autocomplete="off">
     </div>
     <div class="form-group">
         <label for="Author">Author:</label>
-        <input type="text" id="Author" name="Author" class="form-control" value="<%=post.Author%>">
+        <input type="text" id="Author" name="Author" class="form-control" value="<%=post.Author%>"autocomplete="off">
     </div>
     <div class="form-group">
         <label for="Link">Author:</label>
-        <input type="text" id="Link" name="Link" class="form-control" value="<%=post.Link%>">
+        <input type="text" id="Link" name="Link" class="form-control" value="<%=post.Link%>"autocomplete="off">
     </div>
     <div class="form-group">
         <label for="Notes">Notes:</label>
-        <input type="text" id="Notes" name="Notes" class="form-control" value="<%=post.Notes%>">
+        <input type="text" id="Notes" name="Notes" class="form-control" value="<%=post.Notes%>"autocomplete="off">
     </div>
 
 
