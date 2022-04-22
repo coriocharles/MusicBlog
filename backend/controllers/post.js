@@ -15,6 +15,10 @@ router.get('/create', (req, res) => {
     res.render('new')
 })
 
+router.get('/archive', (req, res) => {
+    res.send('still working on it')
+})
+
 router.get('/:id', (req, res) => {
     Post.find({_id: req.params.id})
         .then(post => {
@@ -29,10 +33,32 @@ router.get('/:id/edit', (req,res)=> {
 
 })
 
-router.get('/search/:value', (req, res) => {
-    Post.find({ "Song": { "$regex": req.params.value, "$options": "i" } })
+router.get('/search/category/:value', (req, res) => {
+    
+    let inputValue = String(req.params.value)
+    test = inputValue.replaceAll("+", " ")
+    console.log(test)
+    Post.find(
+        { $or: [
+            { Song: {"$regex": test, "$options": "i" } }, 
+            { Artist: {"$regex": test, "$options": "i" } },
+            { Album: {"$regex": test, "$options": "i" } },
+            { Genre: {"$regex": test, "$options": "i" } }, 
+        ]})
         .then(posts => {
-            res.render('search', {posts})
+            res.render('search.ejs', { posts: posts })
+        })
+
+})
+
+router.get('/search/:category/:value', (req, res) => {
+    let inputKey = String(req.params.category)
+    let inputValue = String(req.params.value)
+    test = inputValue.replaceAll("+", " ")
+    console.log(test)
+    Post.find({ [inputKey]: { "$regex": test, "$options": "i" } })
+        .then(posts => {
+            res.render('search.ejs', { posts: posts })
         })
 
 })
@@ -42,6 +68,7 @@ router.post('/', (req, res) => {
     console.log('in post')
     Post.create(req.body)
         .then(post => {
+            console.log(post)
             res.redirect('/posts')
         })
         .catch(console.error)

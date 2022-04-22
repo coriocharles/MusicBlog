@@ -2,25 +2,45 @@
     {
         "Song": "hello",
         "Rating": "Good",
+        "Album": "Ruins",
         "Author": "Charlie",
-        "Notes": "I really like this song.  I can't wait to hear more"
+        "Link": "https://organtapes.bandcamp.com/album/plenty-wine-in-the-cup",
+        "Platform": "Bandcamp",
+        "Notes": "I really like this song.  I can't wait to hear more",
+        "Artist": "Grouper"
+        ,
+        "Genre": [
+            "ambient",
+            "noise"
+        ]
     },
     {
         "Song": "goodbye",
         "Rating": "Bad",
         "Author": "Charlie",
-        "Notes": "Not a fan, the drums are too loud!"
+        "Album": "Pornography",
+        "Platform": "Spotify",
+        "Notes": "Not a fan, the drums are too loud!",
+        "Artist": "Grouper",
+        "Link": "https://open.spotify.com/album/7v6htsHRSZ34XJCki1uZxB?si=5Yn3AgcNTMSTUXj9VNL3-A",
+        "Genre": ["ambient", "drone"]
     },
     {
         "Song": "test",
         "Rating": "Ok",
+        "Platform": "Youtube",
+        "Link": "https://www.youtube.com/watch?v=LL998ajnjN4&t=2410s&ab_channel=alteredzones",
         "Author": "Bob",
-        "Notes": "What an ok track"
+        "Notes": "What an ok track",
+        "Artist": "Tim hecker"
     },
     {
         "Song": "orange",
         "Rating": "Mid",
         "Author": "Alice",
-        "Notes": "I like the color orange"
+        "Link": "none",
+        "Notes": "I like the color orange",
+        "Genre": "ambient",
+        "Artist": "Grimes"
     }
 ]
