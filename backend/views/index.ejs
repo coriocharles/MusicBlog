@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts</title>
+    <title>Queue</title>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -26,23 +26,25 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#">Queue<span class="sr-only">(current)</span></a>
+                </li> -->
                 <li class="nav-item active">
                     <a href="/posts/create" class="btn btn-success right">New Post</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-light" href="/posts/archive">Archive</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="btn btn-light" href="/posts/archive">Likes</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2 searchInput" type="search" placeholder="Search" aria-label="Search">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Category
+                    <button class="btn btn-light dropdown-toggle filter" type="button" id="dropdown" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="margin-right: 8px">
+                       
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <button class="dropdown-item category" href="#">Song</button>
@@ -55,7 +57,6 @@
             </form>
         </div>
     </nav>
-    <h2>Queue</h2>
     <div style="text-align: center">
     <% for (let i=0; i < posts.length; i ++) { %>
         <li class="card" style="width: 30rem;">
@@ -71,7 +72,7 @@
              <% }  else { %> 
             https://i.imgur.com/7VTlCxz.png
             <% } %>
-            " alt="not working" style="max-width: 5rem; max-height: 2.5rem">
+            " alt="not working" style="max-width: 5rem; max-height: 2.5rem;">
             <div class="card-body">
             <p class="card-text">
             <%= posts[i].Song %> by <%= posts[i].Artist %><br>
@@ -100,6 +101,8 @@
         const a = document.querySelector('.searchButton')
         const input = document.querySelector('.searchInput')
         const categorySong = document.querySelectorAll('.category')
+        const filter = document.querySelector(".filter")
+
         console.log(categorySong)
 
 
@@ -122,6 +125,7 @@
 
         function addCategory(input) {
             console.log("fired")
+            filter.innerText = input
             a.href = a.href.replace("category", input)
             a.href = a.href.replace("Song", input)
             a.href = a.href.replace("Album", input)
