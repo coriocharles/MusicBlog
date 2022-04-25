@@ -22,7 +22,7 @@
     
     <div style="text-align: center">
     <% for (let i=0; i < posts.length; i ++) { %>
-        <li class="card" style="width: 18rem;">
+        <li class="card" style="width: 30rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 3px;">
             <img class="card-img-top" src="
                         <% if (posts[i].Link.includes(" bandcamp")) { %>
             https://i.imgur.com/lLQoinI.png
@@ -54,6 +54,9 @@
             </div>
         </li>
         <% } %>
+    </div>
+    <div style="margin-top: 100px; text-align: center;">
+        <a href="/posts/">Back to Home</a>
     </div>
 </body>
 </html>

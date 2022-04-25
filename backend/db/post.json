@@ -12,7 +12,9 @@
         "Genre": [
             "ambient",
             "noise"
-        ]
+        ],
+        "Archived": false,
+        "Like": false
     },
     {
         "Song": "goodbye",
@@ -23,7 +25,9 @@
         "Notes": "Not a fan, the drums are too loud!",
         "Artist": "Grouper",
         "Link": "https://open.spotify.com/album/7v6htsHRSZ34XJCki1uZxB?si=5Yn3AgcNTMSTUXj9VNL3-A",
-        "Genre": ["ambient", "drone"]
+        "Genre": ["ambient", "drone"],
+        "archived": false,
+        "Like": false
     },
     {
         "Song": "test",
@@ -32,7 +36,9 @@
         "Link": "https://www.youtube.com/watch?v=LL998ajnjN4&t=2410s&ab_channel=alteredzones",
         "Author": "Bob",
         "Notes": "What an ok track",
-        "Artist": "Tim hecker"
+        "Artist": "Tim hecker",
+        "Archived": false,
+        "Like": false
     },
     {
         "Song": "orange",
@@ -41,6 +47,8 @@
         "Link": "none",
         "Notes": "I like the color orange",
         "Genre": "ambient",
-        "Artist": "Grimes"
+        "Artist": "Grimes",
+        "Archived": false,
+        "Like": false
     }
 ]

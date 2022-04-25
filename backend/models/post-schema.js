@@ -11,7 +11,9 @@ const postSchema = new mongoose.Schema(
         Artist: { type: String },
         Genre: [String],
         Platform: [String],
-        Link: {type:String}
+        Link: {type:String},
+        Archived: {type: Boolean},
+        Like: {type: Boolean}
     },
     { timestamps: true }
 )
