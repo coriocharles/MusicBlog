@@ -76,7 +76,7 @@
                                         </p>
                                         <a href="<%=posts[i].Link%>" class="btn btn-success">Link</a>
                                         <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">View</a>
-                                        <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-secondary">Edit</a>
+                                        <a href="/posts/archive/<%=posts[i]._id%>/edit" class="btn btn-secondary">Edit</a>
                                         <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST"
                                             class="d-inline">
                                             <input type="submit" value="Delete" class="btn btn-danger" />
