@@ -30,7 +30,7 @@ router.get('/archive', (req, res) => {
         
 })
 router.get('/liked', (req, res) => {
-    Post.find({ Like: true })
+    Post.find({Like: true})
         .then(posts => {
             res.render('liked', { posts: posts })
         })
@@ -91,14 +91,22 @@ router.get('/search/:category/:value', (req, res) => {
     let inputValue = String(req.params.value)
     test = inputValue.replaceAll("+", " ")
     console.log(test)
-    Post.find({ [inputKey]: { "$regex": test, "$options": "i" } })
+    Post.find( {
+        $and: [
+            {[inputKey]: { "$regex": test, "$options": "i" }},
+            {$or:
+                [
+                    {Archived: false},
+                    {Archived: {$exists: false}}
+                ]
+            }]})
         .then(posts => {
             res.render('search.ejs', { posts: posts })
         })
 
 })
 
-router.get('/archive/search/archive/category/:value', (req, res) => {
+router.get('/archive/search/category/:value', (req, res) => {
     let inputValue = String(req.params.value)
     test = inputValue.replaceAll("+", " ")
     console.log(test)
@@ -112,7 +120,7 @@ router.get('/archive/search/archive/category/:value', (req, res) => {
             ]
         })
         .then(posts => {
-            res.render('search.ejs', { posts: posts })
+            res.render('searchArchive.ejs', { posts: posts })
         })
 
 })
@@ -122,9 +130,9 @@ router.get('/archive/search/:category/:value', (req, res) => {
     let inputValue = String(req.params.value)
     test = inputValue.replaceAll("+", " ")
     console.log(test)
-    Post.find({ [inputKey]: { "$regex": test, "$options": "i" }, Archived: true })
+    Post.find({ $and: [{[inputKey]: { "$regex": test, "$options": "i" }}, {Archived: "true"} ]})
         .then(posts => {
-            res.render('search.ejs', { posts: posts })
+            res.render('searchArchive.ejs', { posts: posts })
             // res.send("working")
         })
 
@@ -136,13 +144,12 @@ router.post('/', (req, res) => {
     Post.create(req.body)
         .then(post => {
             console.log(post)
-            res.redirect('/posts')
+            (setTimeout(() => { res.redirect('/posts') }, 3000))
         })
         .catch(console.error)
 })
 
 router.get('/liked/search/category/:value', (req, res) => {
-
     let inputValue = String(req.params.value)
     test = inputValue.replaceAll("+", " ")
     console.log(test)
@@ -156,7 +163,7 @@ router.get('/liked/search/category/:value', (req, res) => {
             ]
         })
         .then(posts => {
-            res.render('search.ejs', { posts: posts })
+            res.render('searchLike.ejs', { posts: posts })
         })
 
 })
@@ -168,31 +175,29 @@ router.get('/liked/search/:category/:value', (req, res) => {
     console.log(test)
     Post.find({ [inputKey]: { "$regex": test, "$options": "i" }, Like: true })
         .then(posts => {
-            res.render('search.ejs', { posts: posts })
+            res.render('searchLike.ejs', { posts: posts })
         })
 
 })
 
 router.put('/archive/:id/', (req, res) => {
-    Post.findOneAndUpdate({ _id: req.params.id}, {Song: req.body.Song, Rating: req.body.Rating, Author: req.body.Author, Review: req.body.Review, Archived: req.body.Archived, Like: req.body.Like}
+    Post.findOneAndUpdate({_id: req.params.id},req.body
     , { new: true })
-        .then(res.redirect('/posts/archive'))
-        
+        .then(setTimeout(() => {res.redirect('/posts/archive')}, 3000))
         .catch(console.error)
 })
 
 router.put('/liked/:id/', (req, res) => {
-    Post.findOneAndUpdate({ _id: req.params.id }, { Song: req.body.Song, Rating: req.body.Rating, Author: req.body.Author, Review: req.body.Review, Archived: req.body.Archived, Like: req.body.Like }
+    Post.findOneAndUpdate({ _id: req.params.id }, req.body
         , { new: true })
-        .then(res.redirect('/posts/liked'))
-
+        .then(setTimeout(() => { res.redirect('/posts/liked') }, 3000))
         .catch(console.error)
 })
 
 router.put('/:id/', (req, res) => {
-    Post.findOneAndUpdate({ _id: req.params.id }, { Song: req.body.Song, Rating: req.body.Rating, Author: req.body.Author, Review: req.body.Review, Archived: req.body.Archived, Like: req.body.Like }
+    Post.findOneAndUpdate({ _id: req.params.id }, req.body
         , { new: true })
-        .then(res.redirect('/posts'))
+        .then(setTimeout(() => { res.redirect('/posts') }, 3000))
 
         .catch(console.error)
 })

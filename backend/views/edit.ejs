@@ -14,6 +14,10 @@
         <input type="text" id="Author" name="Author" class="form-control" value="<%=post.Author%>"autocomplete="off">
     </div>
     <div class="form-group">
+        <label for="Genre">Genre:</label>
+        <input type="text" id="Genre" name="Genre" class="form-control" value="<%=post.Genre%>" autocomplete="off">
+    </div>
+    <div class="form-group">
         <label for="Link">Author:</label>
         <input type="text" id="Link" name="Link" class="form-control" value="<%=post.Link%>"autocomplete="off">
     </div>
@@ -49,10 +53,10 @@
     function runChecked(checkbox) {
         if (checkbox.checked) {
             checkbox.value = true
-            console.log("fired true")
+            checkbox.setAttribute("checked", "")
         } else if (!checkbox.checked) {
             checkbox.value = false
-            console.log("other value")
+            checkbox.removeAttribute("checked")
         }
     }
     checkboxes.forEach(checkbox => { checkbox.addEventListener('change', function () {

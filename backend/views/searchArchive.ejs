@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,24 +12,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="btn btn-light" href="/posts">[ queue ]</a>
+                    <a class="btn btn-light" href="/posts/archive">[ archive ]</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 searchInput" type="search" placeholder="search"
+                <input class="form-control mr-sm-2 searchInput" type="search" placeholder="search archive"
                     aria-label="Search">
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle filter" type="button" id="dropdown" data-toggle="dropdown"
@@ -42,52 +44,55 @@
                         <button class="dropdown-item category" href="#">genre</button>
                     </div>
                 </div>
-                <a href="/posts/search/category/"
-                    class="btn btn-outline-success my-2 my-sm-0 searchButton">go</a>
+                <a href="/posts/archive/search/category/" class="btn btn-outline-success my-2 my-sm-0 searchButton">go</a>
             </form>
         </div>
     </nav>
     <div style="text-align: center">
-    <% for (let i=0; i < posts.length; i ++) { %>
-        <li class="card" style="width: 30rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 20px;">
-            <img class="card-img-top" src="
+        <% for (let i=0; i < posts.length; i ++) { %>
+            <li class="card" style="width: 30rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 20px;">
+                <img class="card-img-top" src="
                         <% if (posts[i].Link.includes(" bandcamp")) { %>
-            https://i.imgur.com/lLQoinI.png
-            <% } else if (posts[i].Link.includes("youtube")) { %>
-                https://i.imgur.com/qTtMmDO.png
-                <% } else if (posts[i].Link.includes("spotify")) { %>
-                    https://i.imgur.com/YB0YsUm.png
-                    <% } else if (posts[i].Link.includes("soundcloud")) { %>
-                        https://i.imgur.com/UStS5cp.jpg
-                        <% } else { %>
-                            https://i.imgur.com/7VTlCxz.png
-                            <% } %>
-                                " alt="not working" style="max-width: 5rem; max-height: 2.5rem">
-            <div class="card-body">
-                <p class="card-text">
-                <%= posts[i].Song[0].toUpperCase() + posts[i].Song.substring(1) %> by <%= posts[i].Artist %><br>
-                        Album: <%= posts[i].Album %><br>
-                            <br><%= posts[i].Notes %>
-                                </p>
-                                
-                                <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
-                                <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST" class="d-inline">
-                                    <input type="submit" value="delete" class="btn btn-danger" />
-                                </form><br>
-                                posted by: <%= posts[i].Author %>
-                                <div class="nav-link disabled" href="#">
-                                    <%= posts[i].Genre %>
-                                </div>
-                                <h1><%=posts[i].Archived%></h1>
-                                <h1>
-                                    <%=posts[i].Like%>
-                                </h1>
-            </div>
-        </li>
-        <% } %>
+                https://i.imgur.com/lLQoinI.png
+                <% } else if (posts[i].Link.includes("youtube")) { %>
+                    https://i.imgur.com/qTtMmDO.png
+                    <% } else if (posts[i].Link.includes("spotify")) { %>
+                        https://i.imgur.com/YB0YsUm.png
+                        <% } else if (posts[i].Link.includes("soundcloud")) { %>
+                            https://i.imgur.com/UStS5cp.jpg
+                            <% } else { %>
+                                https://i.imgur.com/7VTlCxz.png
+                                <% } %>
+                                    " alt="not working" style="max-width: 5rem; max-height: 2.5rem">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <%= posts[i].Song[0].toUpperCase() + posts[i].Song.substring(1) %> by <%=
+                                                    posts[i].Artist %><br>
+                                                    Album: <%= posts[i].Album %><br><br>
+                                                        <%= posts[i].Notes %>
+                                        </p>
+
+                                        <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
+                                        <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST"
+                                            class="d-inline">
+                                            <input type="submit" value="delete" class="btn btn-danger" />
+                                        </form><br>
+                                        posted by: <%= posts[i].Author %>
+                                            <div class="nav-link disabled" href="#">
+                                                <%= posts[i].Genre %>
+                                            </div>
+                                            <h1>
+                                                <%=posts[i].Archived%>
+                                            </h1>
+                                            <h1>
+                                                <%=posts[i].Like%>
+                                            </h1>
+                                    </div>
+            </li>
+            <% } %>
     </div>
     <div style="margin-top: 100px; text-align: center;">
-        <a href="/posts/">return to queue</a>
+        <a href="/posts/archive">return to archive</a>
     </div>
 </body>
 <script>
@@ -95,7 +100,7 @@
     const input = document.querySelector('.searchInput')
     const categorySong = document.querySelectorAll('.category')
     const filter = document.querySelector(".filter")
-    const likeButton = document.querySelectorAll("#button")
+
     console.log(categorySong)
 
 
@@ -129,7 +134,7 @@
 
     function backspace() {
         console.log("backspace fired")
-        if (a.href.length > 23) {
+        if (a.href.length > 30) {
             a.href = a.href.slice(0, -1)
         }
     }
@@ -144,4 +149,3 @@
     ))
 </script>
 </html>
-

@@ -28,32 +28,32 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="btn btn-light" href="/posts/liked">[Liked Posts]</a>
+                    <a class="btn btn-light" href="/posts/liked">[ likes ]</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 searchInput" type="search" placeholder="Search Liked Posts" aria-label="Search">
+                <input class="form-control mr-sm-2 searchInput" type="search" placeholder="search likes" aria-label="Search">
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle filter" type="button" id="dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 8px">
 
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button class="dropdown-item category" href="#">Song</button>
-                        <button class="dropdown-item category" href="#">Artist</button>
-                        <button class="dropdown-item category" href="#">Album</button>
-                        <button class="dropdown-item category" href="#">Genre</button>
+                        <button class="dropdown-item category" href="#">song</button>
+                        <button class="dropdown-item category" href="#">artist</button>
+                        <button class="dropdown-item category" href="#">album</button>
+                        <button class="dropdown-item category" href="#">genre</button>
                     </div>
                 </div>
-                <a href="/posts/liked/search/category/" class="btn btn-outline-success my-2 my-sm-0 searchButton">Search</a>
+                <a href="/posts/liked/search/category/" class="btn btn-outline-success my-2 my-sm-0 searchButton">go</a>
             </form>
         </div>
     </nav>
     <div style="text-align: center">
         <% for (let i=0; i < posts.length; i ++) { %>
-            <li class="card" style="width: 30rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 3px;">
+            <li class="card" style="width: 30rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 20px;">
                 <img class="card-img-top" src="
-            <% if (posts[i].Link.includes(" bandcamp")) { %>
+            <% if (posts[i].Link.includes("bandcamp")) { %>
                 https://i.imgur.com/lLQoinI.png
                 <% } else if (posts[i].Link.includes("youtube")) { %>
                     https://i.imgur.com/qTtMmDO.png
@@ -62,6 +62,7 @@
                         <% } else if (posts[i].Link.includes("soundcloud")) { %>
                             https://i.imgur.com/UStS5cp.jpg
                             <% } else { %>
+                                <% console.log(posts[i].Link) %>
                                 https://i.imgur.com/7VTlCxz.png
                                 <% } %>
                                     " alt="not working" style="max-width: 5rem; max-height: 2.5rem;">
@@ -69,22 +70,22 @@
                                         <p class="card-text">
                                             <%= posts[i].Song %> by <%= posts[i].Artist %><br>
                                                     <% if (posts[i].Album) { %>
-                                                        Album: <%= posts[i].Album %><br><br>
+                                                        Album: <%= posts[i].Album %><br>
                                                             <% } %>
-                                                                <%= posts[i].Notes %>
+                                                                <br><%= posts[i].Notes %>
                                         </p>
-                                        <a href="<%=posts[i].Link%>" class="btn btn-success">Link</a>
-                                        <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">View</a>
-                                        <a href="/posts/liked/<%=posts[i]._id%>/edit" class="btn btn-secondary">Edit</a>
+                                        <a href="<%=posts[i].Link%>" class="btn btn-success">link</a>
+                                        <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">view</a>
+                                        <a href="/posts/liked/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
                                         <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST"
                                             class="d-inline">
-                                            <input type="submit" value="Delete" class="btn btn-danger" />
+                                            <input type="submit" value="delete" class="btn btn-danger" />
                                         </form><br>
                                         posted by: <%= posts[i].Author %>
-                                            <div class="nav-link disabled" href="#">
+                                            <div class="nav-link" href="#">
                                                 <% posts[i].Genre.forEach(genre=> { %>
-                                                    [<%=genre%>]
-                                                        <% }) %>
+                                                    <a style="color: grey" href="/posts/liked/search/Genre/<%=genre%>">[<%=genre%>]</a>
+                                                    <% }) %>
                                             </div>
                                     </div>
             </li>
