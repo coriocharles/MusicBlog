@@ -6,7 +6,7 @@ const Post = require('../models/post-schema.js')
 router.get('/', (req, res) => {
     Post.find({
         $or: [
-            { Archived: false },
+            { Archived: "false" },
             { Archived: { $exists: false }}
         ]})
         .then(posts => {
@@ -18,19 +18,26 @@ router.get('/search/category', (req, res) => {
     res.redirect('/posts')
 })
 
+router.get('/liked/search/category', (req, res) => {
+    res.redirect('/posts/liked')
+})
+
+router.get('/archive/search/category', (req, res) => {
+    res.redirect('/posts/archive')
+})
 router.get('/create', (req, res) => {
     res.render('new')
 })
 
 router.get('/archive', (req, res) => {
-    Post.find({Archived: true})
+    Post.find({Archived: "true"})
         .then(posts=> {
             res.render('archive', {posts: posts})
         })
         
 })
 router.get('/liked', (req, res) => {
-    Post.find({Like: true})
+    Post.find({Like: "true"})
         .then(posts => {
             res.render('liked', { posts: posts })
         })
@@ -68,35 +75,44 @@ router.get('/liked/:id/edit', (req, res) => {
 
 })
 
+router.post('/', (req, res) => {
+    Post.create(req.body)
+        .then(post => {
+                (setTimeout(() => { res.redirect('/posts') }, 3000))
+        })
+        .catch(console.error)
+})
+//REGULAR SEARCH
 router.get('/search/category/:value', (req, res) => {
     
     let inputValue = String(req.params.value)
-    test = inputValue.replaceAll("+", " ")
-    console.log(test)
+    val = inputValue.replaceAll("+", " ")
+    console.log(val)
     Post.find(
-        { $or: [
-            { Song: {"$regex": test, "$options": "i" } }, 
-            { Artist: {"$regex": test, "$options": "i" } },
-            { Album: {"$regex": test, "$options": "i" } },
-            { Genre: {"$regex": test, "$options": "i" } }, 
-        ]})
+        { $and: [
+            {$or: [
+            { Song: {"$regex": val, "$options": "i" } }, 
+            { Artist: {"$regex": val, "$options": "i" } },
+            { Album: {"$regex": val, "$options": "i" } },
+            { Genre: {"$regex": val, "$options": "i" } }, 
+            ]
+            }, { $or: [{ Archived: "false" }, { Archived: { $exists: false}}]}]})
         .then(posts => {
             res.render('search.ejs', { posts: posts })
         })
 
 })
-
 router.get('/search/:category/:value', (req, res) => {
-    let inputKey = String(req.params.category)
+    let inputKey = String(req.params.category).charAt(0).toUpperCase() + String(req.params.category).slice(1)
     let inputValue = String(req.params.value)
-    test = inputValue.replaceAll("+", " ")
-    console.log(test)
+    val = inputValue.replaceAll("+", " ")
+    console.log(val)
     Post.find( {
         $and: [
-            {[inputKey]: { "$regex": test, "$options": "i" }},
+            {[inputKey]: { "$regex": val, "$options": "i" }},
             {$or:
                 [
-                    {Archived: false},
+                    {Archived: "false"},
                     {Archived: {$exists: false}}
                 ]
             }]})
@@ -105,19 +121,23 @@ router.get('/search/:category/:value', (req, res) => {
         })
 
 })
-
+//ARCHIVE SEARCH
 router.get('/archive/search/category/:value', (req, res) => {
     let inputValue = String(req.params.value)
-    test = inputValue.replaceAll("+", " ")
-    console.log(test)
+    val = inputValue.replaceAll("+", " ")
+    console.log(val)
     Post.find(
         {
-            $or: [
-                { Song: { "$regex": test, "$options": "i" } },
-                { Artist: { "$regex": test, "$options": "i" } },
-                { Album: { "$regex": test, "$options": "i" } },
-                { Genre: { "$regex": test, "$options": "i" } },
-            ]
+        $and: [
+            {$or: 
+                [
+                    { Song: { "$regex": val, "$options": "i" } },
+                    { Artist: { "$regex": val, "$options": "i" } },
+                    { Album: { "$regex": val, "$options": "i" } },
+                    { Genre: { "$regex": val, "$options": "i" } },
+                ]
+            },
+            {Archived: "true"}]
         })
         .then(posts => {
             res.render('searchArchive.ejs', { posts: posts })
@@ -126,41 +146,32 @@ router.get('/archive/search/category/:value', (req, res) => {
 })
 
 router.get('/archive/search/:category/:value', (req, res) => {
-    let inputKey = String(req.params.category)
+    let inputKey = String(req.params.category).charAt(0).toUpperCase() + String(req.params.category).slice(1)
     let inputValue = String(req.params.value)
-    test = inputValue.replaceAll("+", " ")
-    console.log(test)
-    Post.find({ $and: [{[inputKey]: { "$regex": test, "$options": "i" }}, {Archived: "true"} ]})
+    val = inputValue.replaceAll("+", " ")
+    console.log(inputKey)
+    console.log(val)
+    Post.find({ $and: [{[inputKey]: { "$regex": val, "$options": "i" }}, {Archived: "true"} ]})
         .then(posts => {
             res.render('searchArchive.ejs', { posts: posts })
             // res.send("working")
         })
 
 })
-
-router.post('/', (req, res) => {
-    // res.send('received!')
-    console.log('in post')
-    Post.create(req.body)
-        .then(post => {
-            console.log(post)
-            (setTimeout(() => { res.redirect('/posts') }, 3000))
-        })
-        .catch(console.error)
-})
-
+//LIKED SEARCH
 router.get('/liked/search/category/:value', (req, res) => {
     let inputValue = String(req.params.value)
-    test = inputValue.replaceAll("+", " ")
-    console.log(test)
+    val = inputValue.replaceAll("+", " ")
+    console.log(val)
     Post.find(
-        {
-            $or: [
-                { Song: { "$regex": test, "$options": "i" } },
-                { Artist: { "$regex": test, "$options": "i" } },
-                { Album: { "$regex": test, "$options": "i" } },
-                { Genre: { "$regex": test, "$options": "i" } },
-            ]
+        { $and: [
+            {$or: [
+                { Song: { "$regex": val, "$options": "i" } },
+                { Artist: { "$regex": val, "$options": "i" } },
+                { Album: { "$regex": val, "$options": "i" } },
+                { Genre: { "$regex": val, "$options": "i" } },
+            ]},
+            {Like: "true"}]
         })
         .then(posts => {
             res.render('searchLike.ejs', { posts: posts })
@@ -169,11 +180,11 @@ router.get('/liked/search/category/:value', (req, res) => {
 })
 
 router.get('/liked/search/:category/:value', (req, res) => {
-    let inputKey = String(req.params.category)
+    let inputKey = String(req.params.category).charAt(0).toUpperCase() + String(req.params.category).slice(1)
     let inputValue = String(req.params.value)
-    test = inputValue.replaceAll("+", " ")
-    console.log(test)
-    Post.find({ [inputKey]: { "$regex": test, "$options": "i" }, Like: true })
+    val = inputValue.replaceAll("+", " ")
+    console.log(val)
+    Post.find({ [inputKey]: { "$regex": val, "$options": "i" }, Like: "true" })
         .then(posts => {
             res.render('searchLike.ejs', { posts: posts })
         })

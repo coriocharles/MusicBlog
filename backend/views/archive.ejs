@@ -66,28 +66,27 @@
                                 https://i.imgur.com/7VTlCxz.png
                                 <% } %>
                                     " alt="not working" style="max-width: 5rem; max-height: 2.5rem;">
-                                    <div class="card-body">
-                                        <p class="card-text">
+            <div class="card-body">
+                        <p class="card-text">
                                             <%= posts[i].Song %> by <%= posts[i].Artist %><br>
                                                     <% if (posts[i].Album) { %>
                                                         Album: <%= posts[i].Album %><br>
                                                             <% } %>
                                                                 <br><%= posts[i].Notes %>
-                                        </p>
-                                        <a href="<%=posts[i].Link%>" class="btn btn-success">link</a>
-                                        <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">view</a>
-                                        <a href="/posts/archive/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
-                                        <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST"
-                                            class="d-inline">
-                                            <input type="submit" value="delete" class="btn btn-danger" />
-                                        </form><br>
-                                        posted by: <%= posts[i].Author %>
-                                            <div class="nav-link" href="#">
-                                                <% posts[i].Genre.forEach(genre=> { %>
-                                                    <a style="color: grey" href="/posts/archive/search/Genre/<%=genre%>">[<%=genre%>]</a>
-                                                    <% }) %>
-                                            </div>
-                                    </div>
+                        </p>
+                        <a href="<%=posts[i].Link%>" class="btn btn-success">link</a>
+                        <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">view</a>
+                        <a href="/posts/archive/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
+                        <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST" class="d-inline">
+                            <input type="submit" value="delete" class="btn btn-danger" />
+                        </form><br>
+                        posted by: <%= posts[i].Author %>
+                        <div class="nav-link" href="#">
+                            <% posts[i].Genre.forEach(genre=> { %>
+                            <a style="color: grey" href="/posts/archive/search/Genre/<%=genre%>">[<%=genre%>]</a>
+                            <% }) %>
+                        </div>
+            </div>
             </li>
             <% } %>
     </div>

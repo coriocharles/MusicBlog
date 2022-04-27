@@ -1,13 +1,15 @@
 <h4>Edit Post:</h4>
 
-<form action="/posts/<%=post._id%>/?_method=put" method="POST" style="text-align:center">
-    <div class="form-group">
-        <label for="Song">Song Name:</label>
-        <input type="text" id="Song" name="Song" class="form-control" value="<%=post.Song%>"autocomplete="off">
+<form action="/posts/<%=post._id%>/?_method=put" method="POST">
+    <div class="form-group row">
+        <label for="Song"class="col-sm-2 col-form-label">Song Name:</label>
+        <div class ="form-group mx-sm-1 mb-2">
+            <input type="text" id="Song" name="Song" class="form-control" value="<%=post.Link%>"autocomplete="off">
+        </div>
     </div>
     <div class="form-group">
-        <label for="Rating">Rating:</label>
-        <input type="text" id="Rating" name="Rating" class="form-control" value="<%=post.Rating%>"autocomplete="off">
+        <label for="Artist">Artist:</label>
+        <input type="text" id="Artist" name="Artist" class="form-control" value="<%=post.Artist%>"autocomplete="off">
     </div>
     <div class="form-group">
         <label for="Author">Author:</label>
@@ -18,26 +20,32 @@
         <input type="text" id="Genre" name="Genre" class="form-control" value="<%=post.Genre%>" autocomplete="off">
     </div>
     <div class="form-group">
-        <label for="Link">Author:</label>
+        <label for="Link">Link:</label>
         <input type="text" id="Link" name="Link" class="form-control" value="<%=post.Link%>"autocomplete="off">
     </div>
     <div class="form-group">
         <label for="Notes">Notes:</label>
         <input type="text" id="Notes" name="Notes" class="form-control" value="<%=post.Notes%>"autocomplete="off">
     </div>
+    <div class="form-group" style="display: none;">
+        <label for="Archived">Archived:</label>
+        <input type="text" id="Archived" name="Archived" class="form-control" value="<%=post.Archived%>" autocomplete="off">
+    </div>
     <div class="form-group" style="display:inline-block; margin-right: 40px">
+        <label for="x">Listened:</label>
+        <input id="Archivedcheckbox" type="checkbox" id="x" name="x" class="form-control" <% if (post.Archived==="true" ) {%>
+        checked
+        <% } %>>
+    </div>
+    <div class="form-group" style="display: none">
         <label for="Like">Like:</label>
-        <input id="checkbox" type="checkbox" id="Like" name="Like" class="form-control"
-        <% if (post.Like) {%>
-            checked value="true"
-            <% } %>>
+        <input type="text" id="Like" name="Like" class="form-control" value="<%=post.Like%>" autocomplete="off">
     </div>
     <div class="form-group" style="display:inline-block">
-        <label for="Archived">Listened:</label>
-        <input id="checkbox"type="checkbox" id="Archived" name="Archived" class="form-control"
-        <% if (post.Archived) {%>
-            checked value="true"
-            <% } %>
+        <label for="x">Like:</label>
+        <input id="Likecheckbox" type="checkbox" id="x" name="x" class="form-control" <% if (post.Like==="true" ) {%>
+        checked
+        <% } %>
             >
     </div>
     
@@ -48,26 +56,44 @@
     </div>
 </form>
 <script>
+    let archived = document.querySelector("#Archived")
+    let like = document.querySelector("#Like")
+    let archivedCheck = document.querySelector("#Archivedcheckbox")
+    let likeCheck = document.querySelector("#Likecheckbox")
 
-    let checkboxes = document.querySelectorAll("#checkbox")
-    function runChecked(checkbox) {
+    function runCheckedArchive(checkbox) {
         if (checkbox.checked) {
-            checkbox.value = true
-            checkbox.setAttribute("checked", "")
+            archived.value = "true"
         } else if (!checkbox.checked) {
-            checkbox.value = false
-            checkbox.removeAttribute("checked")
+            archived.value = "false"
         }
     }
-    checkboxes.forEach(checkbox => { checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                    console.log("Checkbox is checked");
-                    runChecked(checkbox)
-                } else {
-                    console.log("Checkbox is not checked");
-                    runChecked(checkbox)
-                }
-            });
+    archivedCheck.addEventListener('change', function () {
+        if (this.checked) {
+            console.log("Checkbox is checked");
+            runCheckedArchive(this)
+        } else {
+            console.log("Checkbox is not checked");
+            runCheckedArchive(this)
+        }
     });
-    
+    ;
+    function runCheckedLike(checkbox) {
+        if (checkbox.checked) {
+            like.value = "true"
+        } else if (!checkbox.checked) {
+            like.value = "false"
+        }
+    }
+    likeCheck.addEventListener('change', function () {
+        if (this.checked) {
+            console.log("Checkbox is checked");
+            runCheckedLike(this)
+        } else {
+            console.log("Checkbox is not checked");
+            runCheckedLike(this)
+        }
+    });
+    ;
+
 </script>
