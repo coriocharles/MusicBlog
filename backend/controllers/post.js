@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
     Post.find({
         $or: [
             { Archived: "false" },
+            { Archived: "" },
             { Archived: { $exists: false }}
         ]})
         .then(posts => {
@@ -191,26 +192,40 @@ router.get('/liked/search/:category/:value', (req, res) => {
 
 })
 
-router.put('/archive/:id/', (req, res) => {
-    Post.findOneAndUpdate({_id: req.params.id},req.body
-    , { new: true })
-        .then(setTimeout(() => {res.redirect('/posts/archive')}, 3000))
-        .catch(console.error)
+router.put('/archive/:id', async (req, res, next) => {
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body);
+        console.log(updatedPost);
+        return res.redirect(`/posts/archive`)
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 })
 
-router.put('/liked/:id/', (req, res) => {
-    Post.findOneAndUpdate({ _id: req.params.id }, req.body
-        , { new: true })
-        .then(setTimeout(() => { res.redirect('/posts/liked') }, 3000))
-        .catch(console.error)
+router.put('/liked/:id', async (req, res, next) => {
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body);
+        console.log(updatedPost);
+        return res.redirect(`/posts/liked`)
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 })
 
-router.put('/:id/', (req, res) => {
-    Post.findOneAndUpdate({ _id: req.params.id }, req.body
-        , { new: true })
-        .then(setTimeout(() => { res.redirect('/posts') }, 3000))
-
-        .catch(console.error)
+router.put('/:id', async (req, res, next) => {
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body);
+        console.log(updatedPost);
+        return res.redirect(`/posts`)
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 })
 
 router.delete('/:id/', (req,res)=> {

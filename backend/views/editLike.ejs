@@ -1,11 +1,13 @@
 <h4>Edit Post:</h4>
 
-<form action="/posts/liked/<%=post._id%>/?_method=put" method="POST" style="text-align:center">
-    <div class="form-group">
-        <label for="Song">Song Name:</label>
-        <input type="text" id="Song" name="Song" class="form-control" value="<%=post.Song%>" autocomplete="off">
+<form action="/posts/liked/<%=post._id%>/?_method=put" method="POST" style="">
+    <div class="form-group row">
+        <label for="Song" class="col-sm-2 col-form-label">Song Name:</label>
+        <div class="form-group mx-sm-1 mb-2">
+            <input type="text" id="Song" name="Song" class="form-control" value="<%=post.Link%>" autocomplete="off">
+        </div>
     </div>
-    <div class="form-group">
+        <div class="form-group">
         <label for="Artist">Artist:</label>
         <input type="text" id="Artist" name="Artist" class="form-control" value="<%=post.Artist%>" autocomplete="off">
     </div>
@@ -14,21 +16,30 @@
         <input type="text" id="Author" name="Author" class="form-control" value="<%=post.Author%>" autocomplete="off">
     </div>
     <div class="form-group">
+        <label for="Genre">Genre:</label>
+        <input type="text" id="Genre" name="Genre" class="form-control" value="<%=post.Genre%>" autocomplete="off">
+    </div>
+    <div class="form-group">
         <label for="Link">Link:</label>
         <input type="text" id="Link" name="Link" class="form-control" value="<%=post.Link%>" autocomplete="off">
+    </div>
+    <div class="form-group">
+        <label for="Album">Album:</label>
+        <input type="text" id="Album" name="Album" class="form-control" value="<%=post.Album%>" autocomplete="off">
     </div>
     <div class="form-group">
         <label for="Notes">Notes:</label>
         <input type="text" id="Notes" name="Notes" class="form-control" value="<%=post.Notes%>" autocomplete="off">
     </div>
-    <div class="form-group" style="display:none">
+    <div class="form-group" style="display: none;">
         <label for="Archived">Archived:</label>
-        <input type="text" id="Archived" name="Archived" class="form-control" value="<%=post.Archived%>" autocomplete="off">
+        <input type="text" id="Archived" name="Archived" class="form-control" value="<%=post.Archived%>"
+            autocomplete="off">
     </div>
     <div class="form-group" style="display:inline-block; margin-right: 40px">
         <label for="x">Listened:</label>
-        <input id="Archivedcheckbox" type="checkbox" id="x" name="x" class="form-control"
-         <% if (post.Archived === "true") {%>
+        <input id="Archivedcheckbox" type="checkbox" id="x" name="x" class="form-control" <% if (post.Archived==="true"
+            ) {%>
         checked
         <% } %>>
     </div>
@@ -38,8 +49,7 @@
     </div>
     <div class="form-group" style="display:inline-block">
         <label for="x">Like:</label>
-        <input id="Likecheckbox" type="checkbox" id="x" name="x" class="form-control" 
-        <% if (post.Like === "true") {%>
+        <input id="Likecheckbox" type="checkbox" id="x" name="x" class="form-control" <% if (post.Like==="true" ) {%>
         checked
         <% } %>
             >
@@ -52,10 +62,10 @@
     </div>
 </form>
 <script>
-let archived = document.querySelector("#Archived")
-let like = document.querySelector("#Like")
-let archivedCheck = document.querySelector("#Archivedcheckbox")
-let likeCheck = document.querySelector("#Likecheckbox")
+    let archived = document.querySelector("#Archived")
+    let like = document.querySelector("#Like")
+    let archivedCheck = document.querySelector("#Archivedcheckbox")
+    let likeCheck = document.querySelector("#Likecheckbox")
 
     function runCheckedArchive(checkbox) {
         if (checkbox.checked) {
@@ -65,14 +75,14 @@ let likeCheck = document.querySelector("#Likecheckbox")
         }
     }
     archivedCheck.addEventListener('change', function () {
-            if (this.checked) {
-                console.log("Checkbox is checked");
-                runCheckedArchive(this)
-            } else {
-                console.log("Checkbox is not checked");
-                runCheckedArchive(this)
-            }
-        });
+        if (this.checked) {
+            console.log("Checkbox is checked");
+            runCheckedArchive(this)
+        } else {
+            console.log("Checkbox is not checked");
+            runCheckedArchive(this)
+        }
+    });
     ;
     function runCheckedLike(checkbox) {
         if (checkbox.checked) {
@@ -91,5 +101,5 @@ let likeCheck = document.querySelector("#Likecheckbox")
         }
     });
     ;
-    
+
 </script>

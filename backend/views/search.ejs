@@ -48,41 +48,49 @@
         </div>
     </nav>
     <div style="text-align: center">
-    <% for (let i=0; i < posts.length; i ++) { %>
-        <li class="card" style="width: 30rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 20px;">
-            <img class="card-img-top" src="
-            <% if (posts[i].Link.includes("bandcamp")) { %>
-                    https://i.imgur.com/lLQoinI.png
-            <% } else if (posts[i].Link.includes("youtube")) { %>
-                    https://i.imgur.com/qTtMmDO.png
-            <% } else if (posts[i].Link.includes("spotify")) { %>
-                    https://i.imgur.com/YB0YsUm.png
-            <% } else if (posts[i].Link.includes("soundcloud")) { %>
-                        https://i.imgur.com/UStS5cp.jpg
-            <% } else { %>
-                        https://i.imgur.com/7VTlCxz.png
-            <% } %>
-                                " alt="not working" style="max-width: 5rem; max-height: 2.5rem">
-            <div class="card-body">
-                <p class="card-text">
-                <%= posts[i].Song[0].toUpperCase() + posts[i].Song.substring(1) %> by <%= posts[i].Artist %><br>
-                        <% if (posts[i].Album) { %>
-                            Album: <%= posts[i].Album %><br>
+        <% for (let i=0; i < posts.length; i ++) { %>
+            <li class="card" style="width: 30rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 20px;">
+                <img class="card-img-top" src="
+                <% if (posts[i].Link.includes(" bandcamp")) { %>
+                https://i.imgur.com/vA7bAV9.png
+                <% } else if (posts[i].Link.includes("youtube")) { %>
+                    https://i.imgur.com/tHDhVyA.png
+                    <% } else if (posts[i].Link.includes("spotify")) { %>
+                        https://i.imgur.com/EdhBGzQ.png
+                        <% } else if (posts[i].Link.includes("soundcloud")) { %>
+                            https://i.imgur.com/WvkX12h.png
+                            <% } else { %>
+                                https://i.imgur.com/UnwNT6W.png
                                 <% } %>
-                            <br><%= posts[i].Notes %>
-                                </p>
-                                <a href="<%=posts[i].Link%>" class="btn btn-success">link</a>
-                                <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
-                                <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST" class="d-inline">
-                                    <input type="submit" value="delete" class="btn btn-danger" />
-                                </form><br>
-                                posted by: <%= posts[i].Author %>
-                                <div class="nav-link disabled" href="#">
-                                    <%= posts[i].Genre %>
-                                </div>
-            </div>
-        </li>
-        <% } %>
+                                    " alt="not working" style="max-width: 3rem; max-height: 3rem, display: block;
+                                    margin-left: auto; padding: 10px">
+    
+                                    <div class="card-body">
+                                        <p class="card-text" style="text-align: left;">
+                                            <%= posts[i].Song %> by <%= posts[i].Artist %><br>
+                                                    <% if (posts[i].Album) { %>
+                                                        Album: <%= posts[i].Album %><br>
+                                                            <% } %>
+    
+                                                                <% posts[i].Genre.forEach(genre=> { %>
+                                                                    <a style="color: grey"
+                                                                        href="/posts/search/Genre/<%=genre%>">[<%=genre%>
+                                                                            ]</a>
+                                                                    <% }) %><br>
+    
+                                                                        <br>@<%= posts[i].Author %>: <%= posts[i].Notes %>
+                                        </p>
+                                        <a href="<%=posts[i].Link%>" class="btn btn-success" target="_blank">link</a>
+                                        <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">view</a>
+                                        <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
+                                        <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST"
+                                            class="d-inline">
+                                            <input type="submit" value="delete" class="btn btn-danger" />
+                                        </form><br>
+    
+                                    </div>
+            </li>
+            <% } %>
     </div>
     <div style="margin-top: 100px; text-align: center;">
         <a href="/posts/">return to queue</a>
