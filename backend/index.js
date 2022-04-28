@@ -8,7 +8,8 @@ const MongoStore = require('connect-mongo');
 
 const app = express()
 const postController = require('./controllers/post.js');
-
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(cors())
