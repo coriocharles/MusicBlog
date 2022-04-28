@@ -1,10 +1,8 @@
 require('dotenv').config()
 const express = require('express')
-const session = require('express-session')
 const cors = require('cors')
 const ejsLayouts = require("express-ejs-layouts")
 const methodOverride = require('method-override');
-const MongoStore = require('connect-mongo');
 
 const app = express()
 const postController = require('./controllers/post.js');
@@ -44,7 +42,7 @@ app.use('/posts', postController);
 // })
 
 app.get('/', (req,res)=> {
-    res.render('home')
+    res.render('home.ejs')
 })
 
 app.listen(process.env.PORT || 4000, () => {
