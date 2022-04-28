@@ -85,21 +85,29 @@ router.post('/', (req, res) => {
 })
 //REGULAR SEARCH
 router.get('/search/category/:value', (req, res) => {
-    
     let inputValue = String(req.params.value)
-
-    inputValue = inputValue.replaceAll("-", " ")
     val = inputValue.replaceAll("+", " ")
     console.log(val)
     Post.find(
-        { $and: [
-            {$or: [
-            { Song: {"$regex": val, "$options": "i" } }, 
-            { Artist: {"$regex": val, "$options": "i" } },
-            { Album: {"$regex": val, "$options": "i" } },
-            { Genre: {"$regex": val, "$options": "i" } }, 
+        { 
+        $and: [
+            {$or: 
+                [
+                    { Song: {"$regex": val, "$options": "i" } }, 
+                    { Artist: {"$regex": val, "$options": "i" } },
+                    { Album: {"$regex": val, "$options": "i" } },
+                    { Genre: {"$regex": val, "$options": "i" } }, 
+                ]
+            }, 
+            { $or: 
+                [
+                    { Archived: "false"},
+                    { Archived: ""}, 
+                    { Archived: { $exists: false}}
+                ]
+            }
             ]
-            }, { $or: [{ Archived: "false" }, { Archived: { $exists: false}}]}]})
+        })
         .then(posts => {
             res.render('search.ejs', { posts: posts })
         })
@@ -116,6 +124,7 @@ router.get('/search/:category/:value', (req, res) => {
             {$or:
                 [
                     {Archived: "false"},
+                    {Archived: ""},
                     {Archived: {$exists: false}}
                 ]
             }]})

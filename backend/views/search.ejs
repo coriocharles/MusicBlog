@@ -51,7 +51,7 @@
         <% for (let i=0; i < posts.length; i ++) { %>
             <li class="card" style="width: 30rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 20px;">
                 <img class="card-img-top" src="
-                <% if (posts[i].Link.includes(" bandcamp")) { %>
+                <% if (posts[i].Link.includes("bandcamp")) { %>
                 https://i.imgur.com/vA7bAV9.png
                 <% } else if (posts[i].Link.includes("youtube")) { %>
                     https://i.imgur.com/tHDhVyA.png
@@ -74,8 +74,7 @@
     
                                                                 <% posts[i].Genre.forEach(genre=> { %>
                                                                     <a style="color: grey"
-                                                                        href="/posts/search/Genre/<%=genre%>">[<%=genre%>
-                                                                            ]</a>
+                                                                        href="/posts/search/Genre/<%=genre%>">[<%=genre%>]</a>
                                                                     <% }) %><br>
     
                                                                         <br>@<%= posts[i].Author %>: <%= posts[i].Notes %>
