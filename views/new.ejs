@@ -22,23 +22,25 @@
 
 <form action='/posts' method='POST' style="text-align: center;">
     <div class='form-group row mx-sm-5 mb-2'>
-        <input type="text" placeholder="link" id="Link" name="Link" class="form-control" placeholder="link" autocomplete="off"/>
+        <input type="text" placeholder="link" style="width: 26vw; margin: auto; text-align: center;"id="Link" name="Link" class="form-control" placeholder="link" autocomplete="off"/>
     </div>
     <div class='form-group row mx-sm-5 mb-2'>
-        <input type="text" placeholder="song"id="Song" name="Song" class="form-control" placeholder="song" autocomplete="off"/>
+        <input type="text" placeholder="song"style="width: 26vw; margin: auto; text-align: center;"id="Song" name="Song" class="form-control" placeholder="song" autocomplete="off"/>
     </div>
     <div class='form-group row mx-sm-5 mb-2'>
-        <input type="text" placeholder="artist" id="Artist" name="Artist" class="form-control" placeholder="artist" autocomplete="off"/>
+        <input type="text" placeholder="artist" style="width: 26vw; margin: auto; text-align: center;"id="Artist" name="Artist" class="form-control" placeholder="artist" autocomplete="off"/>
     </div>
     <div class='form-group row mx-sm-5 mb-2'>
-        <input type="text" placeholder="genre" id="Genre" name="Genre" class="form-control" placeholder="Genres (Seperate with Commas)" autocomplete="off"/>
+        <input type="text" placeholder="genre" style="width: 26vw; margin: auto; text-align: center;"id="Genre" name="Genre" class="form-control" placeholder="Genres (Seperate with Commas)" autocomplete="off"/>
     </div>
     <div class='form-group row mx-sm-5 mb-2'>
-        <input type="text" placeholder="notes" id="Notes" name="Notes" class="form-control" placeholder="notes"autocomplete="off" />
+        <input type="text" placeholder="author"style="width: 26vw; margin: auto; text-align: center;" id="Author" name="Author" class="form-control"  placeholder="author"autocomplete="off"/>
     </div>
-    <div class='form-group row mx-sm-5 mb-2'>
-        <input type="text" placeholder="author" id="Author" name="Author" class="form-control"  placeholder="author"autocomplete="off"/>
-    </div>
+    <!-- <div class='form-group row mx-sm-5 mb-2'>
+        <input type="text" placeholder="notes" id="Notes" name="Notes" class="form-control" placeholder="notes"
+            autocomplete="off" />
+    </div> -->
+    <textarea rows="3" cols="30" placeholder="notes" style="margin:auto; text-align: center; width: 26vw" name="Notes"class="form-control" autocomplete="off"></textarea><br>
     
     <input type="submit" class="btn btn-primary" />
     <a href="/posts" class="btn btn-secondary">Cancel</a>

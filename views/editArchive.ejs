@@ -43,34 +43,31 @@
         <% } %>>
     </div>
     <div>
-        <div class="form-group row mx-sm-5 mb-2" style="display:inline-block">
-            <input placeholder="song" style="width: 20vw;" type="text" id="Song" name="Song" class="form-control"
+        <div class="form-group row mx-sm-5 mb-2">
+            <input placeholder="song" style="width: 26vw; margin: auto; text-align: center" type="text" id="Song" name="Song" class="form-control"
                 value="<%=post.Song%>" autocomplete="off">
         </div>
-        <div class="form-group row mx-sm-5 mb-2" style="display:inline-block">
-            <input placeholder="artist" style="width: 20vw;" type="text" id="Artist" name="Artist" class="form-control"
+        <div class="form-group row mx-sm-5 mb-2">
+            <input placeholder="artist" style="width: 26vw; margin: auto; text-align: center" type="text" id="Artist" name="Artist" class="form-control"
                 value="<%=post.Artist%>" autocomplete="off">
         </div>
-        <div class="form-group row mx-sm-5 mb-2" style="display:inline-block">
-            <input placeholder="Author" style="width: 20vw;" type="text" id="Author" name="Author" class="form-control"
+        <div class="form-group row mx-sm-5 mb-2">
+            <input placeholder="Author" style="width: 26vw; margin: auto; text-align: center;" type="text" id="Author" name="Author" class="form-control"
                 value="<%=post.Author%>" autocomplete="off">
         </div>
-        <div class="form-group row mx-sm-5 mb-2" style="display:inline-block">
-            <input placeholder="genre" style="width: 20vw;" type="text" id="Genre" name="Genre" class="form-control"
+        <div class="form-group row mx-sm-5 mb-2">
+            <input placeholder="genre" style="width: 26vw; margin: auto; text-align: center;" type="text" id="Genre" name="Genre" class="form-control"
                 value="<%=post.Genre%>" autocomplete="off">
         </div>
-        <div class="form-group row mx-sm-5 mb-2" style="display:inline-block">
-            <input placeholder="link" style="width: 20vw;" type="text" id="Link" name="Link" class="form-control"
+        <div class="form-group row mx-sm-5 mb-2">
+            <input placeholder="link" style="width: 26vw; margin: auto; text-align: center;" type="text" id="Link" name="Link" class="form-control"
                 value="<%=post.Link%>" autocomplete="off">
         </div>
-        <div class="form-group row mx-sm-5 mb-2" style="display:inline-block">
-            <input placeholder="album" style="width: 20vw;" type="text" id="Album" name="Album" class="form-control"
+        <div class="form-group row mx-sm-5 mb-2">
+            <input placeholder="album" style="width: 26vw; margin: auto; text-align: center;" type="text" id="Album" name="Album" class="form-control"
                 value="<%=post.Album%>" autocomplete="off">
         </div>
-        <div class="form-group row mx-sm-5 mb-2" style="display:inline-block">
-            <input placeholder="notes" style="width: 80vw;" type="text" id="Notes" name="Notes" class="form-control"
-                value="<%=post.Notes%>" autocomplete="off">
-        </div>
+        <textarea rows="3" cols="30" placeholder="notes" style="margin:auto; text-align: center; width: 26vw" name="Notes"class="form-control" value="<%=post.Notes%>" autocomplete="off"><%=post.Notes%></textarea><br>
     </div>
     <div style="display: flex; text-align: center; justify-content: center;">
         <input type="submit" value="Update Post" class="btn btn-primary" ; />
