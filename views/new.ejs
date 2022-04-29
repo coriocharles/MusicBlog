@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!-- <li class="nav-item active">
+                            <a class="nav-link" href="#">Queue<span class="sr-only">(current)</span></a>
+                        </li> -->
+            <li class="nav-item active">
+                <a href="/posts/create" class="btn btn-success right">new</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-light" href="/posts/archive">archive</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-light" href="/posts/liked">likes</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br><br>
+<h5 style="text-align: center; margin-bottom: 20px; color: grey">[ new ] </h5>
+
+<form action='/posts' method='POST' style="text-align: center;">
+    <div class='form-group row mx-sm-5 mb-2'>
+        <input type="text" placeholder="link" id="Link" name="Link" class="form-control" placeholder="link" autocomplete="off"/>
+    </div>
+    <div class='form-group row mx-sm-5 mb-2'>
+        <input type="text" placeholder="song"id="Song" name="Song" class="form-control" placeholder="song" autocomplete="off"/>
+    </div>
+    <div class='form-group row mx-sm-5 mb-2'>
+        <input type="text" placeholder="artist" id="Artist" name="Artist" class="form-control" placeholder="artist" autocomplete="off"/>
+    </div>
+    <div class='form-group row mx-sm-5 mb-2'>
+        <input type="text" placeholder="genre" id="Genre" name="Genre" class="form-control" placeholder="Genres (Seperate with Commas)" autocomplete="off"/>
+    </div>
+    <div class='form-group row mx-sm-5 mb-2'>
+        <input type="text" placeholder="notes" id="Notes" name="Notes" class="form-control" placeholder="notes"autocomplete="off" />
+    </div>
+    <div class='form-group row mx-sm-5 mb-2'>
+        <input type="text" placeholder="author" id="Author" name="Author" class="form-control"  placeholder="author"autocomplete="off"/>
+    </div>
+    
+    <input type="submit" class="btn btn-primary" />
+    <a href="/posts" class="btn btn-secondary">Cancel</a>
+</form>

@@ -160,14 +160,12 @@ router.get('/archive/search/category/:value', (req, res) => {
 router.get('/archive/search/:category/:value', (req, res) => {
     let inputKey = String(req.params.category).charAt(0).toUpperCase() + String(req.params.category).slice(1)
     let inputValue = String(req.params.value)
-    console.log(inputKey)
+    val = inputValue.replaceAll("+", " ")
     console.log(val)
     Post.find({ $and: [{[inputKey]: { "$regex": val, "$options": "i" }}, {Archived: "true"} ]})
         .then(posts => {
             res.render('searchArchive.ejs', { posts: posts })
-            // res.send("working")
         })
-
 })
 //LIKED SEARCH
 router.get('/liked/search/category/:value', (req, res) => {
@@ -193,7 +191,6 @@ router.get('/liked/search/category/:value', (req, res) => {
 router.get('/liked/search/:category/:value', (req, res) => {
     let inputKey = String(req.params.category).charAt(0).toUpperCase() + String(req.params.category).slice(1)
     let inputValue = String(req.params.value)
-    inputValue = inputValue.replaceAll("-", " ")
     val = inputValue.replaceAll("+", " ")
     console.log(val)
     Post.find({ [inputKey]: { "$regex": val, "$options": "i" }, Like: "true" })

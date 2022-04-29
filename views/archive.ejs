@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>queue</title>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -18,33 +18,33 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <!-- <li class="nav-item active">
-                                    <a class="nav-link" href="#">Queue<span class="sr-only">(current)</span></a>
-                                </li> -->
+                                <a class="nav-link" href="#">Queue<span class="sr-only">(current)</span></a>
+                            </li> -->
                 <li class="nav-item active">
                     <a href="/posts/create" class="btn btn-light right">new</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-light" href="/posts/archive">archive</a>
+                    <a class="btn btn-secondary" href="/posts/archive">archive</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-secondary" href="/posts/liked">likes</a>
+                    <a class="btn btn-light" href="/posts/liked">likes</a>
                 </li>
             </ul>
+            
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 searchInput" type="search" placeholder="search likes"
-                    aria-label="Search">
+                <input class="form-control mr-sm-2 searchInput" type="search" placeholder="search archive" aria-label="Search">
                 <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle filter" type="button" id="dropdown" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="margin-right: 8px">
-    
+                    <button class="btn btn-light dropdown-toggle filter" type="button" id="dropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 8px">
+
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <button class="dropdown-item category" href="#">song</button>
@@ -53,7 +53,7 @@
                         <button class="dropdown-item category" href="#">genre</button>
                     </div>
                 </div>
-                <a href="/posts/liked/search/category/" class="btn btn-outline-success my-2 my-sm-0 searchButton">go</a>
+                <a href="/posts/archive/search/category/" class="btn btn-outline-success my-2 my-sm-0 searchButton">go</a>
             </form>
         </div>
     </nav>
@@ -83,14 +83,14 @@
     
                                                                 <% posts[i].Genre.forEach(genre=> { %>
                                                                     <a style="color: grey"
-                                                                        href="/posts/liked/search/Genre/<%=genre%>">[<%=genre%>]</a>
+                                                                        href="/posts/archive/search/Genre/<%=genre%>">[<%=genre%>]</a>
                                                                     <% }) %><br>
     
-                                                                        <br>@<%= posts[i].Author %>: <%= posts[i].Notes %>
+                                                                        <br><a href="/posts/archive/search/Author/<%= posts[i].Author %>">@<%= posts[i].Author %></a>: <%= posts[i].Notes %>
                                         </p>
                                         <a href="<%=posts[i].Link%>" class="btn btn-success" target="_blank">link</a>
                                         <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">view</a>
-                                        <a href="/posts/liked/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
+                                        <a href="/posts/archive/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
                                         <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST"
                                             class="d-inline">
                                             <input type="submit" value="delete" class="btn btn-danger" />
@@ -98,61 +98,59 @@
             </li>
             <% } %>
     </div>
-    <div style="margin-top: 100px; text-align: center;">
-        <a href="/posts/liked">return to likes</a>
-    </div>
+    <script>
+        const a = document.querySelector('.searchButton')
+        const input = document.querySelector('.searchInput')
+        const categorySong = document.querySelectorAll('.category')
+        const filter = document.querySelector(".filter")
+
+        console.log(categorySong)
+
+
+        function runScript(event) {
+            if (event.data == ' ') {
+                a.href += '+'
+            } else {
+                a.href += input.value[input.value.length - 1]
+            }
+            console.log("working")
+        }
+        input.addEventListener('input', event => {
+
+            console.log(event)
+            if (event.inputType === "deleteContentBackward") {
+                backspace()
+            } else {
+                runScript(event)
+            }
+        })
+
+        function addCategory(input) {
+            console.log("fired")
+            filter.innerText = input
+            a.href = a.href.replace("category", input)
+            a.href = a.href.replace("Song", input)
+            a.href = a.href.replace("Album", input)
+            a.href = a.href.replace("Genre", input)
+            a.href = a.href.replace("Artist", input)
+        }
+
+        function backspace() {
+            console.log("backspace fired")
+            if (a.href.length > 30) {
+                a.href = a.href.slice(0, -1)
+            }
+        }
+
+        categorySong.forEach(button => button.addEventListener('click', event => {
+            event.preventDefault()
+            console.log("fired")
+            let input = button.innerText
+            console.log(input)
+            addCategory(input)
+        }
+        ))
+    </script>
 </body>
-<script>
-    const a = document.querySelector('.searchButton')
-    const input = document.querySelector('.searchInput')
-    const categorySong = document.querySelectorAll('.category')
-    const filter = document.querySelector(".filter")
 
-    console.log(categorySong)
-
-
-    function runScript(event) {
-        if (event.data == ' ') {
-            a.href += '+'
-        } else {
-            a.href += input.value[input.value.length - 1]
-        }
-        console.log("working")
-    }
-    input.addEventListener('input', event => {
-
-        console.log(event)
-        if (event.inputType === "deleteContentBackward") {
-            backspace()
-        } else {
-            runScript(event)
-        }
-    })
-
-    function addCategory(input) {
-        console.log("fired")
-        filter.innerText = input
-        a.href = a.href.replace("category", input)
-        a.href = a.href.replace("Song", input)
-        a.href = a.href.replace("Album", input)
-        a.href = a.href.replace("Genre", input)
-        a.href = a.href.replace("Artist", input)
-    }
-
-    function backspace() {
-        console.log("backspace fired")
-        if (a.href.length > 28) {
-            a.href = a.href.slice(0, -1)
-        }
-    }
-
-    categorySong.forEach(button => button.addEventListener('click', event => {
-        event.preventDefault()
-        console.log("fired")
-        let input = button.innerText
-        console.log(input)
-        addCategory(input)
-    }
-    ))
-</script>
 </html>
