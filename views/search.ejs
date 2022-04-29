@@ -87,8 +87,7 @@
                                                                         <br>@<%= posts[i].Author %>: <%= posts[i].Notes %>
                                         </p>
                                         <a href="<%=posts[i].Link%>" class="btn btn-success" target="_blank">link</a>
-                                        <a href="/posts/<%=posts[i]._id%>" class="btn btn-primary">view</a>
-                                        <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-secondary">edit</a>
+                                        <a href="/posts/<%=posts[i]._id%>/edit" class="btn btn-primary">edit</a>
                                         <form action="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST"
                                             class="d-inline">
                                             <input type="submit" value="delete" class="btn btn-danger" />
