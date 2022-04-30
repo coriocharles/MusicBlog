@@ -18,13 +18,13 @@ queue utilizes mongoDB, Node.js, Express, Bootstrap, Vanilla JS, and EJS for tem
 
 ## Usage
 Use the new button to add new entries to your queue.
-<img rel="https://i.imgur.com/pkdCxPT.png"><br>
+![Production](https://i.imgur.com/pkdCxPT.png)<br>
 
 Use the edit button to mark the song as listened and move to archive, edit information, or add it to your likes!
-<img rel="https://i.imgur.com/CzRZ8ys.png"><br>
+![Production](https://i.imgur.com/CzRZ8ys.png)<br>
 
 Use the search bar to find a specific track in your queue, archive, or liked sections!
-<img rel="https://i.imgur.com/gfqkS5W.png"><br>
+![Production](https://i.imgur.com/gfqkS5W.png)<br>
 
 <!-- RELEASE -->
 ## Release
