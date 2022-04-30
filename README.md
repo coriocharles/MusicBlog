@@ -14,7 +14,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-queue utilizes mongoDB, Node.js, Express, Bootstrap, Vanilla JS, and EJS for templating. The application has full CRUD in the MVC structure.  Behinds beguilingly simple, elegant appearance is 22 different routes and 15 different EJS views.  I tried to refine my styling with this project and I hope its smooth design and feel reflect that.
+queue utilizes mongoDB, Node.js, Express, Bootstrap, Vanilla JS, and EJS for templating. The application has full CRUD in the MVC structure.  Behind a beguilingly simple appearance is 22 different routes and 15 different EJS views.  I tried to refine my styling with this project and I hope its smooth design and feel reflect that.
 
 ## Usage
 Use the new button to add new entries to your queue.
