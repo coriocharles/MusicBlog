@@ -14,19 +14,23 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-queue utilizes mongoDB, Node.js, Express, Bootstrap, Vanilla JS, and EJS for templating. The application has full CRUD in the MVC structure.  Behinds beguilingly simple, elegant appearance is 22 different routes and 15 different EJS views.  I tried to really refine my styling with this project and I hope its smooth design and feel reflect that.
+queue utilizes mongoDB, Node.js, Express, Bootstrap, Vanilla JS, and EJS for templating. The application has full CRUD in the MVC structure.  Behinds beguilingly simple, elegant appearance is 22 different routes and 15 different EJS views.  I tried to refine my styling with this project and I hope its smooth design and feel reflect that.
 
 ## Usage
+Use the new button to add new entries to your queue.
+<img rel="https://i.imgur.com/pkdCxPT.png"><br>
 
+Use the edit button to mark the song as listened and move to archive, edit information, or add it to your likes!
+<img rel="https://i.imgur.com/CzRZ8ys.png"><br>
+
+Use the search bar to find a specific track in your queue, archive, or liked sections!
+<img rel="https://i.imgur.com/gfqkS5W.png"><br>
 
 <!-- RELEASE -->
 ## Release
 
 ![Production](https://i.imgur.com/K6NZ5sb.png)
 
-
-<!-- ROADMAP -->
-## Roadmap
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
